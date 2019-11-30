@@ -1,18 +1,20 @@
 import React from 'react';
-import { mount } from 'enzyme';
-
+import { shallow, mount } from 'enzyme';
+import ApiProvider from '../../providers/ApiProvider';
 import QuestionsPage from './QuestionsPage';
-import { JestEnvironment } from '@jest/environment';
-const apiInstance = {
-  get: jest.fn(),
-}
+
 describe('Questions Page component test', () => {
   let enzymeWrapper;
   beforeEach(() => {
-    enzymeWrapper = mount(<QuestionsPage />);
+    const jsx = (
+      <ApiProvider baseURL="/questions">
+        <QuestionsPage />
+      </ApiProvider>
+    );
+    enzymeWrapper = shallow(jsx);
   })
 
-  it('should mount successfully', () => {
+  it('should shallow mount successfully', () => {
     expect(enzymeWrapper.length).toEqual(1);
   });
 });
