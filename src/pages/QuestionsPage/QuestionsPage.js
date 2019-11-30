@@ -39,7 +39,8 @@ class QuestionsPage extends React.Component {
 }
 
 QuestionsPage.propTypes = {
-  api: PropTypes.func,
+  api: PropTypes.func.isRequired,
+  baseURL: PropTypes.string.isRequired,
 }
 
 export default withApiProvider(QuestionsPage);
