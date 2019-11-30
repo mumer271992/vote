@@ -4,10 +4,10 @@ import axios from 'axios';
 import { API_HOST } from '../helpers/constants';
 
 const DataContext = React.createContext({});
-const apiFactory = baseURL => axios.create({ baseURL: `${API_HOST}${baseURL}` });
+const apiFactory = baseURL => axios.create({ baseURL: `${API_HOST}` });
 
 const ApiProvider = ({ baseURL, children }) => (
-  <DataContext.Provider value={{ api: apiFactory(baseURL) }}>
+  <DataContext.Provider value={{ api: apiFactory(baseURL), baseURL }}>
     {children}
   </DataContext.Provider>
 );
