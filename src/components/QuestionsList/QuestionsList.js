@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import QuestionCard from '../QuestionCard/QuestionCard';
 import './QuestionsList.scss'
@@ -13,6 +14,10 @@ const QuestionsList = ({ list }) => {
       }
     </div>
   );
+}
+
+QuestionsList.propTypes = {
+  list: PropTypes.array.isRequired,
 }
 
 export default QuestionsList;
