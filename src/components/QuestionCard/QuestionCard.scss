@@ -3,6 +3,12 @@
   max-width: 385px;
   width: 25%;
   padding: 0.25rem;
+  a {
+    color: #000000;
+    &:hover{
+      text-decoration: none;
+    }
+  }
   @media(max-width: 567px) {
     width: 95%;
     margin: auto;

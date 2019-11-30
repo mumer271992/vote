@@ -2,7 +2,10 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import QuestionsPage from './QuestionsPage';
-
+import { JestEnvironment } from '@jest/environment';
+const apiInstance = {
+  get: jest.fn(),
+}
 describe('Questions Page component test', () => {
   let enzymeWrapper;
   beforeEach(() => {
@@ -12,8 +15,4 @@ describe('Questions Page component test', () => {
   it('should mount successfully', () => {
     expect(enzymeWrapper.length).toEqual(1);
   });
-  // it('should render title properly', () => {
-  //   const titleWrapper = enzymeWrapper.find('[data-test="question-card"]');
-  //   expect(titleWrapper.length).toEqual(mockedQuestionData.length);
-  // });
 });
