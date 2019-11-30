@@ -9,22 +9,22 @@ class ChoicesList extends React.Component {
   }
 
   changeHandler(e) {
-    console.log(e.target);
-    console.log(e.target.id);
+    const { onSelect } = this.props;
+    onSelect(e.target.id);
   }
 
   render() {
     const { list } = this.props;
     return (
       <div className="choices-list">
-        <div className="choices-list-item">
+        <div className="choices-list-item header"  data-test="choices-list-item">
           <div></div>
           <div>Choice</div>
           <div>Votes</div>
         </div>
         {
           list && list.map((item, index) => (
-            <div className="choices-list-item" key={index}>
+            <div className="choices-list-item" key={index} data-test="choices-list-item">
               <div><input type="radio" name="choice" id={index} value={item.choice} onChange={this.changeHandler}></input></div>
               <div>{item.choice}</div>
               <div>{item.votes}</div>

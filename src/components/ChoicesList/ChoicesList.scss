@@ -1,7 +1,17 @@
 .choices-list {
+  margin-bottom: 2rem;
+  .choices-list-item.header {
+    border-top: 1px solid #666666;
+    background: #666;
+    color: #fff;
+    font-weight: bold;
+  }
   .choices-list-item{
+    padding: 16px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border: 1px solid #666666;
+    border-top: 0px;
   }
 }
