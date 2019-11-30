@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './ChoicesList.scss';
 
@@ -34,6 +35,11 @@ class ChoicesList extends React.Component {
       </div>
     )
   }
+}
+
+ChoicesList.propType = {
+  list: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired
 }
 
 export default ChoicesList;
