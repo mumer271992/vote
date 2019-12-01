@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { withApiProvider } from '../../providers/ApiProvider';
 import ChoicesList from '../../components/ChoicesList/ChoicesList';
 import './QuestionDetailsPage.scss';
+import Loader from '../../components/Loader/Loader';
 
 class QuestionDetailsPage extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class QuestionDetailsPage extends React.Component {
     this.state = {
       questionDetails: {},
       selectedChoice: null,
+      loading: false,
     }
     this.OnSelect = this.OnSelect.bind(this);
     this.onClickHandler = this.onClickHandler.bind(this);
@@ -19,8 +21,9 @@ class QuestionDetailsPage extends React.Component {
 
   componentDidMount() {
     const { match: { params }, api, baseURL } = this.props;
+    this.setState(() => ({ loading: true }));
     api.get(`${baseURL}/${params.question_id}`).then((response) => {
-      this.setState(() => ({ questionDetails: response.data }));
+      this.setState(() => ({ loading: false, questionDetails: response.data }));
     });
   }
 
@@ -39,7 +42,7 @@ class QuestionDetailsPage extends React.Component {
   }
 
   render() {
-    const { questionDetails, selectedChoice } = this.state;
+    const { questionDetails, selectedChoice, loading } = this.state;
     return (
       <div className="question-details container">
         <h1>Questions Details</h1>
@@ -51,6 +54,9 @@ class QuestionDetailsPage extends React.Component {
               <button className="btn btn-primary" onClick={this.onClickHandler}>Save</button>
             </div>
           )
+        }
+        {
+          loading && (<Loader />)
         }
       </div>
     );
