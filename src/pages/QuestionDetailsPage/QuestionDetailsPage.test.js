@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import ApiProvider from '../../providers/ApiProvider';
 import QuestionDetailsPage from './QuestionDetailsPage';
 
-describe('Questions Page component test', () => {
+describe('Question Details Page component test', () => {
   let enzymeWrapper;
   beforeEach(() => {
     const jsx = (

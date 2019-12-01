@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import { withApiProvider } from '../../providers/ApiProvider';
 import ChoicesList from '../../components/ChoicesList/ChoicesList';
@@ -19,8 +20,6 @@ class QuestionDetailsPage extends React.Component {
   componentDidMount() {
     const { match: { params }, api, baseURL } = this.props;
     api.get(`${baseURL}/${params.question_id}`).then((response) => {
-      console.log("Question Details");
-      console.log(response.data);
       this.setState(() => ({ questionDetails: response.data }));
     });
   }
@@ -28,14 +27,12 @@ class QuestionDetailsPage extends React.Component {
   OnSelect(selectedIndex) {
     const { questionDetails } = this.state;
     const selectedChoice = questionDetails.choices[selectedIndex];
-    console.log("Selected: ", selectedChoice);
     this.setState(() => ({ selectedChoice: selectedChoice }));
   }
 
   onClickHandler() {
     const { api, history } = this.props;
     const { selectedChoice } = this.state;
-    console.log(selectedChoice.url);
     api.post(selectedChoice.url).then((res) => {
       history.push('/');
     })
@@ -58,6 +55,11 @@ class QuestionDetailsPage extends React.Component {
       </div>
     );
   }
+}
+
+QuestionDetailsPage.propTypes = {
+  api: PropTypes.func.isRequired,
+  baseURL: PropTypes.string.isRequired,
 }
 
 export default withApiProvider(QuestionDetailsPage);
